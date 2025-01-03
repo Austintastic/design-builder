@@ -1,10 +1,49 @@
 import { useEffect, useState, useRef } from 'react'
-import { Box, Container, Paper, ButtonGroup, Button } from '@mui/material'
+import { 
+  Box, 
+  Container, 
+  Paper, 
+  ButtonGroup, 
+  Button,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel 
+} from '@mui/material'
 import './App.css'
 
 function App() {
   const [canvas, setCanvas] = useState(null)
+  const [selectedFont, setSelectedFont] = useState('Avenir Roman')
   const canvasRef = useRef(null)
+
+  // Add array of common fonts
+  const fontOptions = [
+    'Avenir Light',
+    'Avenir Light Oblique',
+    'Avenir Book',
+    'Avenir Book Oblique',
+    'Avenir Roman',
+    'Avenir Oblique',
+    'Avenir Medium',
+    'Avenir Medium Oblique',
+    'Avenir Heavy',
+    'Avenir Heavy Oblique',
+    'Avenir Black',
+    'Avenir Black Oblique',
+  ]
+
+  // Handle font change
+  const handleFontChange = (event) => {
+    const newFont = event.target.value
+    setSelectedFont(newFont)
+    
+    const activeObject = canvas.getActiveObject()
+    if (activeObject && activeObject instanceof window.fabric.Textbox) {
+      activeObject.set('fontFamily', newFont)
+      canvas.renderAll()
+    }
+  }
 
   const addShape = (shapeType) => {
     if (!canvas) return
@@ -38,7 +77,7 @@ function App() {
         })
         break
       case 'text':
-        shape = new window.fabric.Textbox('Double click to edit', {
+        shape = new window.fabric.Textbox('Lorem ipsum', {
           left: 100,
           top: 100,
           fill: '#000000',
@@ -46,6 +85,7 @@ function App() {
           width: 200,
           editable: true,
           cursorColor: '#000000',
+          fontFamily: selectedFont // Use the selected font
         })
         break
     }
@@ -81,6 +121,19 @@ function App() {
       }
     })
 
+    // Update selected font when selecting a text object
+    fabricCanvas.on('selection:created', (options) => {
+      if (options.selected[0] instanceof window.fabric.Textbox) {
+        setSelectedFont(options.selected[0].fontFamily)
+      }
+    })
+
+    fabricCanvas.on('selection:updated', (options) => {
+      if (options.selected[0] instanceof window.fabric.Textbox) {
+        setSelectedFont(options.selected[0].fontFamily)
+      }
+    })
+
     // Deselect on canvas click (outside objects)
     fabricCanvas.on('mouse:down', (options) => {
       if (!options.target) {
@@ -105,12 +158,34 @@ function App() {
         gap: 2,
         alignItems: 'center',
       }}>
-        <ButtonGroup variant="contained" color="primary">
-          <Button onClick={() => addShape('rectangle')}>Rectangle</Button>
-          <Button onClick={() => addShape('circle')}>Circle</Button>
-          <Button onClick={() => addShape('triangle')}>Triangle</Button>
-          <Button onClick={() => addShape('text')}>Text</Button>
-        </ButtonGroup>
+        <Box sx={{ 
+          display: 'flex', 
+          gap: 2, 
+          alignItems: 'center'
+        }}>
+          <ButtonGroup variant="contained" color="primary">
+            <Button onClick={() => addShape('rectangle')}>Rectangle</Button>
+            <Button onClick={() => addShape('circle')}>Circle</Button>
+            <Button onClick={() => addShape('triangle')}>Triangle</Button>
+            <Button onClick={() => addShape('text')}>Text</Button>
+          </ButtonGroup>
+
+          <FormControl sx={{ minWidth: 120 }}>
+            <InputLabel id="font-family-label">Font</InputLabel>
+            <Select
+              labelId="font-family-label"
+              value={selectedFont}
+              onChange={handleFontChange}
+              label="Font"
+            >
+              {fontOptions.map((font) => (
+                <MenuItem key={font} value={font} style={{ fontFamily: font }}>
+                  {font}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
 
         <Paper 
           elevation={3} 
