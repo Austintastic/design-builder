@@ -38,11 +38,14 @@ function App() {
         })
         break
       case 'text':
-        shape = new window.fabric.Text('Hello World', {
+        shape = new window.fabric.Textbox('Double click to edit', {
           left: 100,
           top: 100,
           fill: '#000000',
-          fontSize: 24
+          fontSize: 24,
+          width: 200,
+          editable: true,
+          cursorColor: '#000000',
         })
         break
     }
@@ -50,6 +53,10 @@ function App() {
     if (shape) {
       canvas.add(shape)
       canvas.setActiveObject(shape)
+      if (shape instanceof window.fabric.Textbox) {
+        shape.enterEditing()
+        shape.selectAll()
+      }
       canvas.renderAll()
     }
   }
@@ -64,6 +71,22 @@ function App() {
       width: width,
       height: height,
       backgroundColor: '#ffffff',
+    })
+
+    // Enable text editing on double click
+    fabricCanvas.on('mouse:dblclick', (options) => {
+      if (options.target && options.target instanceof window.fabric.Textbox) {
+        options.target.enterEditing()
+        options.target.selectAll()
+      }
+    })
+
+    // Deselect on canvas click (outside objects)
+    fabricCanvas.on('mouse:down', (options) => {
+      if (!options.target) {
+        fabricCanvas.discardActiveObject()
+        fabricCanvas.renderAll()
+      }
     })
 
     setCanvas(fabricCanvas)
