@@ -32,7 +32,25 @@ body {
 
 h1 {
   font-size: 3.2em;
-  line-height: 1.1;
+  line-height: 1;
+  font-family: helvetica;
+  text-align: center;
+  width: 100%;
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.nav-bar h1 {
+  margin: 10px;
+  color: #333;
 }
 
 button {

@@ -5,4 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/design-builder/',
   plugins: [react()],
+  logLevel: 'info',
+  server: {
+    open: true, // Opens browser automatically
+  }
 })

@@ -1,7 +1,7 @@
 {
   "name": "graphicswebapp",
-  "private": true,
-  "version": "0.0.0",
+  "homepage": "https://Austintastic.github.io/design-builder",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -31,6 +31,5 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "vite": "^6.0.5"
-  },
-  "homepage": "https://Austintastic.github.io/design-builder"
+  }
 }
