@@ -29,3 +29,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Notes to Myself
+roadmap.txt
+gitStarted.txt

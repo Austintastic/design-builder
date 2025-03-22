@@ -1,0 +1,81 @@
+Here are just some reminders for buildilng this project.
+
+>>>Phase 1: Canvas Foundation
+
+•Mini-Project 1: Basic Canvas Setup
+Set up React + Vite project structure
+Implement basic canvas with Fabric.js
+Add responsive container
+Estimated time: 1-2 days
+
+•Mini-Project 2: Basic Shape Tools
+Rectangle tool
+Circle tool
+Triangle tool
+Shape property panel (color, size)
+Estimated time: 2-3 days
+
+
+>>>Phase 2: Core Functionality
+
+•Mini-Project 3: Selection & Manipulation
+Object selection
+Move/resize handles
+Rotation
+Delete functionality
+Estimated time: 2-3 days
+
+•Mini-Project 4: Layer Management
+Layer panel UI
+Layer visibility toggles
+Layer ordering (front/back)
+Layer locking
+Estimated time: 3-4 days
+
+
+
+>>>Phase 3: Text & Typography
+
+•Mini-Project 5: Text Tools
+Text insertion
+Font selection
+Basic formatting (size, color)
+Text alignment
+Estimated time: 2-3 days
+
+
+>>>Phase 4: File Operations
+
+•Mini-Project 6: Save/Export
+Save canvas state
+Export to PNG/JPG
+Local storage integration
+Estimated time: 2-3 days
+
+
+>>>Phase 5: Enhancement Features
+
+•Mini-Project 7: History Management
+Undo/Redo functionality
+Command pattern implementation
+Keyboard shortcuts
+Estimated time: 2-3 days
+
+
+>>>Phase 6: Polish & Optimization
+
+•Mini-Project 8: UI/UX Improvements
+Toolbar organization
+Keyboard shortcuts
+Loading states
+Error handling
+Estimated time: 2-3 days
+
+
+>>>Notes for Junior Developers:
+Each mini-project builds upon the previous one
+Test frequently and commit often
+Focus on one feature at a time
+Ask for code review after completing each mini-project
+Document your code as you go
+Total estimated time: 3-4 weeks
